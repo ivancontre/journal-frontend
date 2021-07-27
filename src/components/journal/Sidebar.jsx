@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { JournalEntries } from './JournalEntries';
 
 export const Sidebar = () => {
     return (
@@ -23,6 +24,9 @@ export const Sidebar = () => {
                 <p className="mt-5"> Nueva entrada </p>
 
             </div>
+
+            <JournalEntries />
+            
         </aside>
     )
 }

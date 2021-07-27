@@ -12,6 +12,12 @@
 
     }
 
+    transition: color .3s ease;
+
+    &:hover {
+        color: darken($color: white, $amount: 20);
+    }
+
     
 
 }
