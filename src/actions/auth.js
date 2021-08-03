@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 // Para hacer peticiones async se utiliza thunk que se configura en el store. Su implementación retorna una función que como argumento tiene un dispatch
 
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
@@ -28,7 +30,7 @@ export const startLoginEmailPassword = (email, password) => {
                 dispatch(finishLoading());
 
             }).catch( error => {
-                console.log(error);
+                Swal.fire('Error', error.message, 'error')
                 dispatch(finishLoading());
             })
 
@@ -64,7 +66,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
                 dispatch(login(user.uid, user.displayName));
 
             }).catch( error => {
-                console.log(error);
+                Swal.fire('Error', error.message, 'error')
             })
     }
 }
