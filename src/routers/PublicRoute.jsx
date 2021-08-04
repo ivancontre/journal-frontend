@@ -8,8 +8,6 @@ export const PublicRoute = ({
     ...rest
 }) => {
 
-    console.log(isAuthenticated)
-
     return (
         <Route 
             { ...rest }

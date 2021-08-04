@@ -4,7 +4,7 @@ import { faMoon, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
 import { JournalEntries } from './JournalEntries';
 import { useDispatch, useSelector } from 'react-redux';
 import { starLogout } from '../../actions/auth';
-import { newEntry } from '../../actions/notes';
+import { startNewNote } from '../../actions/notes';
 
 export const Sidebar = () => {
 
@@ -18,7 +18,7 @@ export const Sidebar = () => {
     }
 
     const hanldeNewEntry = () => {
-        dispatch(newEntry())
+        dispatch(startNewNote())
     }
 
     return (

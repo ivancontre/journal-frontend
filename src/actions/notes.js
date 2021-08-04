@@ -5,7 +5,7 @@ import { fileUpload } from '../helpers/fileUpload';
 import { loadNotes } from '../helpers/loadNotes';
 import { types } from '../types/types';
 
-export const newEntry = () => {
+export const startNewNote = () => {
 
     return async (dispatch, getState) => {
 
@@ -19,11 +19,42 @@ export const newEntry = () => {
             imageUrl: ''
         }
 
-        const doc = await db.collection(`${ uid }/journal/notes`).add(newNote);
+        Swal.fire({
+            title: 'Creando nueva nota...',
+            text: 'Por favor espere',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        })
 
-        dispatch(activeNote(doc.id, newNote));
+        try {
+
+            const doc = await db.collection(`${ uid }/journal/notes`).add(newNote);
+            dispatch(activeNote(doc.id, newNote));
+            dispatch(addNewNote(doc.id, newNote));
+            Swal.close();
+
+        } catch (error) {
+            Swal.close();
+            Swal.fire('Error', error.error.message, 'error');
+        }
+
+        
+
     }
 
+}
+
+export const addNewNote = (id, note) => {
+
+    return {
+        type: types.notesNewEntry,
+        payload: {
+            id,
+            ...note
+        }
+    }
 }
 
 export const activeNote = (id, note) => {
@@ -59,9 +90,11 @@ export const setNotes = (notes) => {
 export const startSaveNote = (note) => {
 
     return async (dispatch, getState) => {
+        
         const { auth } = getState();
         const { uid } = auth;
 
+        
         if (!note.imageUrl){
             delete note.imageUrl;
         }
@@ -69,11 +102,15 @@ export const startSaveNote = (note) => {
         const noteToFirestore = { ...note};
         delete noteToFirestore.id;
 
-        await db.doc(`${ uid }/journal/notes/${ note.id }`).update(noteToFirestore);
+        try {            
+            await db.doc(`${ uid }/journal/notes/${ note.id }`).update(noteToFirestore);
+            dispatch(updateNote(note.id, note));
+            Swal.fire('Guardado', note.title, 'success');
 
-        dispatch(updateNote(note.id, note));
-
-        Swal.fire('Guardado', note.title, 'success');
+        } catch (error) {
+            Swal.fire('Error', error.error.message, 'error');
+        }
+        
     }
 
 }
@@ -103,18 +140,80 @@ export const startUploadImage = (file) =>{
             didOpen: () => {
                 Swal.showLoading();
             }
-        })
+        });
 
         const { active: note } = getState().notes;
 
-        const imageUrl = await fileUpload(file);
+        try {
+            const imageUrl = await fileUpload(file);
+            note.imageUrl = imageUrl;
 
-        Swal.close();
+            Swal.close();
 
-        dispatch(startSaveNote({
-            ...note,
-            imageUrl
-        }));
+            dispatch(startSaveNote(note));
+
+        } catch (error) {
+            Swal.close();
+            Swal.fire('Error', error.error.message, 'error');
+        }        
 
     }
+}
+
+export const deleteNote = (id) => {
+    
+    return {
+        type: types.notesDeleted,
+        payload: id
+    }
+}
+
+
+export const startDeleteNote = (id) => {
+
+    return (dispatch, getState) => {
+
+        const { auth } = getState();
+        const { uid } = auth;
+
+        Swal.fire({
+            title: '¿Seguro que dese eliminar la nota?',
+            showCancelButton: true,
+            confirmButtonText: `Sí`
+        }).then(async (result) => {
+            
+            if (result.isConfirmed) {
+
+                Swal.fire({
+                    title: 'Eliminado...',
+                    text: 'Por favor espere',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                })
+
+                try {
+                    await db.doc(`${ uid }/journal/notes/${ id }`).delete();
+                    dispatch(deleteNote(id));
+                    Swal.close();
+                } catch (error) {
+                    Swal.fire('Error', error.error.message, 'error');
+                    Swal.close();
+                }
+
+            }
+
+        })
+
+    }
+
+}
+
+export const noteLogout = () => {
+
+    return {
+        type: types.notesLogoutCleaning
+    }
+
 }
