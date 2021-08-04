@@ -31,14 +31,9 @@ export const startLoginEmailPassword = (email, password) => {
                 dispatch(finishLoading());
 
             }).catch( error => {
-                Swal.fire('Error', error.message, 'error')
+                Swal.fire('Error', error.error.message, 'error')
                 dispatch(finishLoading());
             })
-
-
-        // setTimeout(() => {
-        //     dispatch(login(email, password));
-        // }, 3000);
     }
 
 }
@@ -51,6 +46,8 @@ export const startGoogleLogin = () => {
 
                 dispatch(login(user.uid, user.displayName))
             
+            }).catch( error => {
+                Swal.fire('Error', error.error.message, 'error')
             })
     }
 
@@ -62,24 +59,46 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then( async ({ user }) => {
 
-                await user.updateProfile({ displayName: name });
+                try {
 
-                dispatch(login(user.uid, user.displayName));
+                    await user.updateProfile({ displayName: name });
+                    dispatch(login(user.uid, user.displayName));
+
+                } catch (error) {
+                    Swal.fire('Error', error.error.message, 'error');
+                }
+                
 
             }).catch( error => {
-                Swal.fire('Error', error.message, 'error')
+                Swal.fire('Error', error.error.message, 'error');
             })
     }
 }
 
 export const starLogout = () => {
 
-    return async (dispatch) => {
+    return (dispatch) => {        
 
-        await firebase.auth().signOut();
+        Swal.fire({
+            title: '¿Seguro que desea cerrar sesión?',
+            showCancelButton: true,
+            confirmButtonText: `Sí`
+        }).then(async (result) => {
+            
+            if (result.isConfirmed) {
 
-        dispatch(logout());
-        dispatch(noteLogout())
+                try {
+
+                    await firebase.auth().signOut();
+                    dispatch(logout());
+                    dispatch(noteLogout());
+
+                } catch (error) {
+                    Swal.fire('Error', error.error.message, 'error');
+                }                
+            }
+
+        })
     }
 };
 

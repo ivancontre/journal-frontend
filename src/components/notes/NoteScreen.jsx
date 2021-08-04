@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import { activeNote, startDeleteNote } from '../../actions/notes';
 import useForm from '../../hooks/useForm';
 import { NotesAppBar } from './NotesAppBar';
@@ -10,6 +13,11 @@ export const NoteScreen = () => {
     const { active: note } = useSelector(state => state.notes);
 
     const [formValues, handleInputChange, reset] = useForm(note);
+
+    //console.log('note', note)
+    if(!formValues.imageUrl && note.imageUrl) formValues.imageUrl = note.imageUrl;
+    //console.log('formValues', formValues)
+    
 
     const { title, body } = formValues;
 
@@ -32,6 +40,7 @@ export const NoteScreen = () => {
 
     useEffect(() => {
         
+
         dispatch(activeNote(formValues.id, {...formValues}));
 
     }, [formValues, dispatch]);
@@ -71,7 +80,8 @@ export const NoteScreen = () => {
             </div>
 
             <button className="btn btn-danger" onClick={ handleDelete }>
-                Borrar
+                <FontAwesomeIcon icon={ faTrash } /> 
+                <span> Borrar </span> 
             </button>
         </div>
     )

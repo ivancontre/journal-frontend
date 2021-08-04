@@ -1,1 +1,1 @@
-Aplicación que utiliza autenticación normal y con el servicio de google. Además, utiliza redux para manejar el estado de la aplicación. Las persistencias se almacenan en Firestore y Cloudinary
+Aplicación que administra notas. Está creada en base a hooks, redux, firestore (para almacenar los usuarios y notas) y Cloudinary para almacenar imágenes

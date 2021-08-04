@@ -1,4 +1,8 @@
 import React from 'react';
+import moment from 'moment';
+import 'moment/locale/es';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage, faSave } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from 'react-redux';
 import { startSaveNote, startUploadImage } from '../../actions/notes';
 
@@ -6,6 +10,8 @@ export const NotesAppBar = () => {
 
     const dispatch = useDispatch()
     const { active: note } = useSelector(state => state.notes);
+
+    const currentDate = moment().format('DD MMMM YYYY');
 
     const handleSave = () => {
 
@@ -30,7 +36,7 @@ export const NotesAppBar = () => {
 
     return (
         <div className="notes__appbar">
-            <span>28 de agosto 2020</span>
+            <span>{ currentDate }</span>
 
             <input
                 id="inputFileId"
@@ -43,11 +49,14 @@ export const NotesAppBar = () => {
 
             <div>
                 <button className="btn" onClick={ handlePictureUpload }>
-                    Imagen
+                    <FontAwesomeIcon icon={ faImage } /> 
+                    <span> Imagen </span> 
                 </button>
                 
                 <button className="btn" onClick={ handleSave }>
-                    Guardar
+                    <FontAwesomeIcon icon={ faSave } /> 
+                    <span> Guardar </span> 
+                    
                 </button>
             </div>
         </div>

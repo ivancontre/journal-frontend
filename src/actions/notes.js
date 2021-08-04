@@ -93,7 +93,6 @@ export const startSaveNote = (note) => {
         
         const { auth } = getState();
         const { uid } = auth;
-
         
         if (!note.imageUrl){
             delete note.imageUrl;
@@ -177,7 +176,7 @@ export const startDeleteNote = (id) => {
         const { uid } = auth;
 
         Swal.fire({
-            title: '¿Seguro que dese eliminar la nota?',
+            title: '¿Seguro que desea eliminar la nota?',
             showCancelButton: true,
             confirmButtonText: `Sí`
         }).then(async (result) => {

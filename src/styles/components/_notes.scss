@@ -43,7 +43,14 @@
     resize: none;
 }
 
+.notes__image {
+    align-items: center;
+    display: flex;
+    justify-content: center;    
+}
+
 .notes__image img {
     box-shadow: 5px 5px $dark-grey;
     height: 150px;
+    
 }

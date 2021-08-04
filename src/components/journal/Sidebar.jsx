@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faCalendarPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faCalendarPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { JournalEntries } from './JournalEntries';
 import { useDispatch, useSelector } from 'react-redux';
 import { starLogout } from '../../actions/auth';
@@ -33,7 +33,9 @@ export const Sidebar = () => {
                     className="btn"
                     onClick={ handleLogout }
                 >
-                    Salir
+                    <FontAwesomeIcon icon={ faSignOutAlt } /> 
+                    <span> Salir </span> 
+                    
                 </button>
             </div>
 
