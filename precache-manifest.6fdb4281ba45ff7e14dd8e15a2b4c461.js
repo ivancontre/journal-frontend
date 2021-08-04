@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5f0601ca5296f862ee11b72e5b9a318e",
+    "revision": "fd784f545d0044cda79a3baa4d37f453",
     "url": "https://ivancontre.github.io/react-joutnalapp/index.html"
   },
   {
-    "revision": "e3056fd8c6e9569ce3de",
+    "revision": "1e0128ee22d875a9c8bd",
     "url": "https://ivancontre.github.io/react-joutnalapp/static/css/2.2ce0d9b2.chunk.css"
   },
   {
-    "revision": "59fdd986582f2b06c8c9",
+    "revision": "66bc4ce01d6beb63822c",
     "url": "https://ivancontre.github.io/react-joutnalapp/static/css/main.f95fe01c.chunk.css"
   },
   {
-    "revision": "e3056fd8c6e9569ce3de",
-    "url": "https://ivancontre.github.io/react-joutnalapp/static/js/2.613a8b39.chunk.js"
+    "revision": "1e0128ee22d875a9c8bd",
+    "url": "https://ivancontre.github.io/react-joutnalapp/static/js/2.736f82cc.chunk.js"
   },
   {
     "revision": "06ae1b980035305a30157a925629d1b7",
-    "url": "https://ivancontre.github.io/react-joutnalapp/static/js/2.613a8b39.chunk.js.LICENSE.txt"
+    "url": "https://ivancontre.github.io/react-joutnalapp/static/js/2.736f82cc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "59fdd986582f2b06c8c9",
-    "url": "https://ivancontre.github.io/react-joutnalapp/static/js/main.fd7ace09.chunk.js"
+    "revision": "66bc4ce01d6beb63822c",
+    "url": "https://ivancontre.github.io/react-joutnalapp/static/js/main.d4aa506c.chunk.js"
   },
   {
     "revision": "69c974055fd67424939e",

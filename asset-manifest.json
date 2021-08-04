@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "https://ivancontre.github.io/react-joutnalapp/static/css/main.f95fe01c.chunk.css",
-    "main.js": "https://ivancontre.github.io/react-joutnalapp/static/js/main.fd7ace09.chunk.js",
-    "main.js.map": "https://ivancontre.github.io/react-joutnalapp/static/js/main.fd7ace09.chunk.js.map",
+    "main.js": "https://ivancontre.github.io/react-joutnalapp/static/js/main.d4aa506c.chunk.js",
+    "main.js.map": "https://ivancontre.github.io/react-joutnalapp/static/js/main.d4aa506c.chunk.js.map",
     "runtime-main.js": "https://ivancontre.github.io/react-joutnalapp/static/js/runtime-main.64357141.js",
     "runtime-main.js.map": "https://ivancontre.github.io/react-joutnalapp/static/js/runtime-main.64357141.js.map",
     "static/css/2.2ce0d9b2.chunk.css": "https://ivancontre.github.io/react-joutnalapp/static/css/2.2ce0d9b2.chunk.css",
-    "static/js/2.613a8b39.chunk.js": "https://ivancontre.github.io/react-joutnalapp/static/js/2.613a8b39.chunk.js",
-    "static/js/2.613a8b39.chunk.js.map": "https://ivancontre.github.io/react-joutnalapp/static/js/2.613a8b39.chunk.js.map",
+    "static/js/2.736f82cc.chunk.js": "https://ivancontre.github.io/react-joutnalapp/static/js/2.736f82cc.chunk.js",
+    "static/js/2.736f82cc.chunk.js.map": "https://ivancontre.github.io/react-joutnalapp/static/js/2.736f82cc.chunk.js.map",
     "index.html": "https://ivancontre.github.io/react-joutnalapp/index.html",
-    "precache-manifest.c0b6785bb6976644af1ee20445d28c36.js": "https://ivancontre.github.io/react-joutnalapp/precache-manifest.c0b6785bb6976644af1ee20445d28c36.js",
+    "precache-manifest.6fdb4281ba45ff7e14dd8e15a2b4c461.js": "https://ivancontre.github.io/react-joutnalapp/precache-manifest.6fdb4281ba45ff7e14dd8e15a2b4c461.js",
     "service-worker.js": "https://ivancontre.github.io/react-joutnalapp/service-worker.js",
     "static/css/2.2ce0d9b2.chunk.css.map": "https://ivancontre.github.io/react-joutnalapp/static/css/2.2ce0d9b2.chunk.css.map",
     "static/css/main.f95fe01c.chunk.css.map": "https://ivancontre.github.io/react-joutnalapp/static/css/main.f95fe01c.chunk.css.map",
-    "static/js/2.613a8b39.chunk.js.LICENSE.txt": "https://ivancontre.github.io/react-joutnalapp/static/js/2.613a8b39.chunk.js.LICENSE.txt"
+    "static/js/2.736f82cc.chunk.js.LICENSE.txt": "https://ivancontre.github.io/react-joutnalapp/static/js/2.736f82cc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.64357141.js",
     "static/css/2.2ce0d9b2.chunk.css",
-    "static/js/2.613a8b39.chunk.js",
+    "static/js/2.736f82cc.chunk.js",
     "static/css/main.f95fe01c.chunk.css",
-    "static/js/main.fd7ace09.chunk.js"
+    "static/js/main.d4aa506c.chunk.js"
   ]
 }
