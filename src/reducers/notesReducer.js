@@ -26,6 +26,7 @@ export const notesReducer = (state = initalState, action) => {
     switch (action.type) {
 
         case types.notesActive:
+
             return {
                 ...state,
                 active: { // o active: action.payload
@@ -39,6 +40,21 @@ export const notesReducer = (state = initalState, action) => {
                 ...state,
                 notes: [...action.payload],
                 
+            };
+
+        case types.notesUpdate:
+
+            return {
+                ...state,
+                // notes: state.notes.map((note) => {
+                //     if (action.payload.id === note.id) {
+                //         return action.payload.note
+                //     } else { 
+                //         return note;
+                //     }
+                // })
+
+                notes: state.notes.map( note => action.payload.id === note.id ? action.payload.note : note)
             }
 
         default:
