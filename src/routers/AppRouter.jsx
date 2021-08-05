@@ -14,6 +14,7 @@ import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { startLoadingNotes } from '../actions/notes';
+import { Loading } from '../components/loading/Loading';
 
 export const AppRouter = () => {
 
@@ -44,7 +45,7 @@ export const AppRouter = () => {
     }, [ dispatch, setChecking, setIsLoggedIn ]);
 
     if (checking) {
-        return (<h1>Waiting...</h1>)
+        return (<Loading />)
     }
 
     return (
