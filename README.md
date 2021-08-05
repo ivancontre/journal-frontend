@@ -2,9 +2,11 @@ Aplicación que administra notas.
 
 Está creada en base: 
 
+* Funtional Components
 * Hooks
 * Redux y Thunks (Middleware)
-* Routers
+* Autenticación normal y con Google
+* Routers privados y públicos
 * Firestore
 * Sass
 * Cloudinary
