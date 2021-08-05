@@ -1,15 +1,41 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { inactivesNotes, startLoadNote } from '../../actions/notes';
 import { NoteScreen } from '../notes/NoteScreen';
 import { NothingSelected } from './NothingSelected';
 import { Sidebar } from './Sidebar';
 
-export const JournalScreen = () => {
+export const JournalScreen = () => {    
+
+    const params = useParams();
+    const dispatch = useDispatch();    
+    const history = useHistory();
+
+    useEffect(() => {
+        const loadNote = async () => {
+
+            try {
+                await dispatch(startLoadNote(params.noteId));
+            } catch (error) {
+                history.push('/')
+            }            
+        }
+
+        if (params.noteId) {    
+            loadNote()
+            
+            
+        }else{
+            dispatch(inactivesNotes())
+        }
+    }, [dispatch, params.noteId, history])
 
     const { active } = useSelector(state => state.notes);
 
     return (
-        <div className="journal_main-content animate__animated animate__fadeIn animate__faster">
+        <div className="journal_main-content">
             <Sidebar />
 
             <main>

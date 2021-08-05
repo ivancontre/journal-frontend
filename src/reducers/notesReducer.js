@@ -79,6 +79,13 @@ export const notesReducer = (state = initalState, action) => {
                 active: null
             }
 
+        case types.notesInactives:
+            return {
+                ...state,
+                active: null
+            }
+            
+
         default:
             return state;
     }

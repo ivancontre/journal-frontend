@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 
 import { db } from '../firebase/firebase-config';
 import { fileUpload } from '../helpers/fileUpload';
+import { loadNote } from '../helpers/loadNote';
 import { loadNotes } from '../helpers/loadNotes';
 import { types } from '../types/types';
 
@@ -69,11 +70,40 @@ export const activeNote = (id, note) => {
 
 }
 
+export const inactivesNotes = () => {
+    return {
+        type: types.notesInactives
+    }
+}
+
 export const startLoadingNotes = (uid) => {
     
     return async (dispatch) => {
         const notes = await loadNotes(uid);
         dispatch(setNotes(notes));
+    }
+
+}
+
+export const startLoadNote = (id) => {
+
+    return async (dispatch, getState) => {
+        const { auth } = getState();
+        const { uid } = auth;
+
+        try {
+            const note = await loadNote(uid, id);
+
+            if (note) {
+                dispatch(activeNote(id, note));
+            } else {
+                Swal.fire('Error', 'No existe la nota indicada por URL', 'error');
+                return Promise.reject();
+            }
+
+        } catch (error) {
+            Swal.fire('Error', '', 'error');
+        }        
     }
 
 }

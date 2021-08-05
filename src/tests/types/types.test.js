@@ -1,4 +1,7 @@
-export const types = {
+import { types } from "../../types/types";
+
+
+const typesToEvaluate = {
 
     login: '[Auth] Login',
     logout: '[Auth] Logout',
@@ -15,8 +18,14 @@ export const types = {
     notesUpdate: '[Notes] Update note',
     notesFileUrl: '[Notes] Update image url',
     notesDeleted: '[Notes] Deleted note',
-    notesLogoutCleaning: '[Notes] Logout cleaning' ,
-    notesInactives: '[Notes] Set inactive note',
+    notesLogoutCleaning: '[Notes] Logout cleaning'
 
+};
 
-}
+describe('Pruebas con nuestros types', () => {
+
+    test('debe de retornar el objeto types ', () => {
+        expect(types).toEqual(typesToEvaluate)
+    })
+    
+})

@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { activeNote } from '../../actions/notes';
+import { useParams, useHistory } from 'react-router-dom';
 
 export const JournalEntry = ({
     id,
@@ -15,20 +16,32 @@ export const JournalEntry = ({
 
     const dispatch = useDispatch();
 
-    const handleEntryClick = () => {
+    const history = useHistory();
 
+    const params = useParams();
+
+    const { active } = useSelector(state => state.notes);
+
+    const handleEntryClick = () => {
+        
         const note = {
             title,
             body,
             date,
             imageUrl
         };
-        
-        dispatch(activeNote(id, note));
-    }
 
+        dispatch(activeNote(id, note));
+
+        if (params.noteId !== id) {
+            history.push(`/${ id }`); 
+            //window.history.pushState(null, null, `#/${ id }`);
+        } 
+
+    }
+    
     return (
-        <div className="journal__entry animate__animated animate__fadeIn animate__faster" onClick={ handleEntryClick } >
+        <div className={'journal__entry' + (active?.id === id ? ' journal__entry-active' : '')} onClick={ handleEntryClick } >
 
             {
                 imageUrl && (

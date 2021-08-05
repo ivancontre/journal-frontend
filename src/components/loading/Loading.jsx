@@ -6,7 +6,7 @@ export const Loading = () => {
 
             <div>
                 
-                <div class="loading__spinner"></div>
+                <div className="loading__spinner"></div>
                 
                 <span>Validando sesión...</span>
 

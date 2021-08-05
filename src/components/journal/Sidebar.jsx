@@ -7,11 +7,10 @@ import { starLogout } from '../../actions/auth';
 import { startNewNote } from '../../actions/notes';
 
 export const Sidebar = () => {
-
+    
     const dispatch = useDispatch();
 
     const { name } = useSelector(state => state.auth);
-
 
     const handleLogout = () => {        
         dispatch(starLogout());        
