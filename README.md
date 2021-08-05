@@ -11,4 +11,4 @@ Está creada en base:
 * Sass
 * Cloudinary
 
-https://ivancontre.github.io/react-joutnalapp/#/auth/login
+https://ivancontre.github.io/react-journalapp/#/auth/login
