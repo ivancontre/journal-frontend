@@ -4,6 +4,8 @@ import 'moment/locale/es';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faSave } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+
 import { startSaveNote, startUploadImage } from '../../actions/notes';
 
 export const NotesAppBar = () => {
@@ -13,9 +15,14 @@ export const NotesAppBar = () => {
 
     const currentDate = moment().format('DD MMMM YYYY');
 
-    const handleSave = () => {
+    const handleSave = async () => {
 
-        dispatch(startSaveNote(note));
+        try {
+            await dispatch(startSaveNote(note));
+            Swal.fire('Guardado', 'Nota actualizada correctamente', 'success');
+        } catch (error) {
+            Swal.fire('Error', '', 'error');
+        }   
         
     }
 
@@ -23,16 +30,32 @@ export const NotesAppBar = () => {
         document.getElementById('inputFileId').click()
     }
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
 
         const file = e.target.files;
 
         if (file) {
-            dispatch(startUploadImage(file[0]));
+            
+            Swal.fire({
+                title: 'Subiendo...',
+                text: 'Por favor espere',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            try {
+                await dispatch(startUploadImage(file[0]));
+                Swal.close();
+            } catch (error) {
+                console.log(error);
+                Swal.close();
+                Swal.fire('Error', '', 'error');
+            }            
         }
 
     }
-
 
     return (
         <div className="notes__appbar">

@@ -26,12 +26,17 @@ export const AppRouter = () => {
 
     useEffect(() => {
         
-        firebase.auth().onAuthStateChanged( user => {
+        firebase.auth().onAuthStateChanged( async (user) => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName));
                 setIsLoggedIn(true);
 
-                dispatch(startLoadingNotes(user.uid));
+                try {
+                    await dispatch(startLoadingNotes(user.uid));
+                } catch (error) {   
+                    console.log(error);
+                }
+                
 
             } else {
                 setIsLoggedIn(false);

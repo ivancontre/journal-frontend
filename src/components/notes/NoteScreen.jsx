@@ -3,16 +3,20 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2';
 
 import { activeNote, startDeleteNote } from '../../actions/notes';
 import useForm from '../../hooks/useForm';
 import { NotesAppBar } from './NotesAppBar';
+import { useHistory } from 'react-router-dom';
 
 export const NoteScreen = () => {
 
     const { active: note } = useSelector(state => state.notes);
 
     const [formValues, handleInputChange, reset] = useForm(note);
+
+    const history = useHistory();
 
     //console.log('note', note)
     if(!formValues.imageUrl && note.imageUrl) formValues.imageUrl = note.imageUrl;
@@ -26,7 +30,38 @@ export const NoteScreen = () => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch(startDeleteNote(note.id));
+
+        Swal.fire({
+            title: '¿Seguro que desea eliminar la nota?',
+            showCancelButton: true,
+            confirmButtonText: `Sí`
+        }).then(async (result) => {
+            
+            if (result.isConfirmed) {
+                
+                Swal.fire({
+                    title: 'Eliminando...',
+                    text: 'Por favor espere',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                try {
+                    await dispatch(startDeleteNote(note.id));
+                    history.push('/');
+                    Swal.close();
+                } catch (error) {
+                    Swal.close();
+                    Swal.fire('Error', '', 'error');
+                } 
+            }
+
+        })
+        .catch(error => {
+            Swal.fire('Error', error, 'error');
+        });        
     }
 
     useEffect(() => {

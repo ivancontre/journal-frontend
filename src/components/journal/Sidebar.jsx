@@ -1,8 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faCalendarPlus, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { JournalEntries } from './JournalEntries';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+
+import { JournalEntries } from './JournalEntries';
 import { starLogout } from '../../actions/auth';
 import { startNewNote } from '../../actions/notes';
 
@@ -16,8 +18,25 @@ export const Sidebar = () => {
         dispatch(starLogout());        
     }
 
-    const hanldeNewEntry = () => {
-        dispatch(startNewNote())
+    const hanldeNewEntry = async () => {
+        Swal.fire({
+            title: 'Creando nueva nota...',
+            text: 'Por favor espere',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        try {
+            await dispatch(startNewNote());
+            Swal.close();
+        } catch (error) {
+            console.log(error);
+            Swal.close();
+            Swal.fire('Error', error, 'error');
+        }
+        
     }
 
     return (

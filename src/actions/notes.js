@@ -1,5 +1,3 @@
-import Swal from 'sweetalert2';
-
 import { db } from '../firebase/firebase-config';
 import { fileUpload } from '../helpers/fileUpload';
 import { loadNote } from '../helpers/loadNote';
@@ -20,31 +18,16 @@ export const startNewNote = () => {
             imageUrl: ''
         }
 
-        Swal.fire({
-            title: 'Creando nueva nota...',
-            text: 'Por favor espere',
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        })
-
         try {
-
             const doc = await db.collection(`${ uid }/journal/notes`).add(newNote);
             dispatch(activeNote(doc.id, newNote));
             dispatch(addNewNote(doc.id, newNote));
-            Swal.close();
+            return Promise.resolve();            
 
         } catch (error) {
-            Swal.close();
-            Swal.fire('Error', error.error.message, 'error');
+            return Promise.reject(error);
         }
-
-        
-
     }
-
 }
 
 export const addNewNote = (id, note) => {
@@ -79,8 +62,15 @@ export const inactivesNotes = () => {
 export const startLoadingNotes = (uid) => {
     
     return async (dispatch) => {
-        const notes = await loadNotes(uid);
-        dispatch(setNotes(notes));
+
+        try {
+            const notes = await loadNotes(uid);
+            dispatch(setNotes(notes));
+            return Promise.resolve();
+        } catch (error) {
+            return Promise.reject(error);
+        }
+        
     }
 
 }
@@ -96,13 +86,13 @@ export const startLoadNote = (id) => {
 
             if (note) {
                 dispatch(activeNote(id, note));
-            } else {
-                Swal.fire('Error', 'No existe la nota indicada por URL', 'error');
-                return Promise.reject();
+                return Promise.resolve();
+            } else {                
+                return Promise.reject('No existe la nota indicada por URL');
             }
 
         } catch (error) {
-            Swal.fire('Error', '', 'error');
+            return Promise.reject(error);
         }        
     }
 
@@ -131,15 +121,15 @@ export const startSaveNote = (note) => {
         const noteToFirestore = { ...note};
         delete noteToFirestore.id;
 
-        try {            
-            await db.doc(`${ uid }/journal/notes/${ note.id }`).update(noteToFirestore);
+        try {
+
+            await db.doc(`${ uid }/journal/notes2/${ note.id }`).update(noteToFirestore);
             dispatch(updateNote(note.id, note));
-            Swal.fire('Guardado', note.title, 'success');
+            return Promise.resolve();
 
         } catch (error) {
-            Swal.fire('Error', error.error.message, 'error');
-        }
-        
+            return Promise.reject(error);
+        }        
     }
 
 }
@@ -162,28 +152,16 @@ export const startUploadImage = (file) =>{
 
     return async (dispatch, getState) => {
 
-        Swal.fire({
-            title: 'Subiendo...',
-            text: 'Por favor espere',
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        });
-
         const { active: note } = getState().notes;
 
         try {
             const imageUrl = await fileUpload(file);
-            note.imageUrl = imageUrl;
-
-            Swal.close();
+            note.imageUrl = imageUrl;            
 
             dispatch(startSaveNote(note));
 
         } catch (error) {
-            Swal.close();
-            Swal.fire('Error', error.error.message, 'error');
+            return Promise.reject(error);
         }        
 
     }
@@ -200,43 +178,19 @@ export const deleteNote = (id) => {
 
 export const startDeleteNote = (id) => {
 
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
 
         const { auth } = getState();
         const { uid } = auth;
 
-        Swal.fire({
-            title: '¿Seguro que desea eliminar la nota?',
-            showCancelButton: true,
-            confirmButtonText: `Sí`
-        }).then(async (result) => {
-            
-            if (result.isConfirmed) {
-
-                Swal.fire({
-                    title: 'Eliminado...',
-                    text: 'Por favor espere',
-                    allowOutsideClick: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-                    }
-                })
-
-                try {
-                    await db.doc(`${ uid }/journal/notes/${ id }`).delete();
-                    dispatch(deleteNote(id));
-                    Swal.close();
-                } catch (error) {
-                    Swal.fire('Error', error.error.message, 'error');
-                    Swal.close();
-                }
-
-            }
-
-        })
-
+        try {
+            await db.doc(`${ uid }/journal/notes/${ id }`).delete();
+            dispatch(deleteNote(id));
+            return Promise.resolve();
+        } catch (error) {
+            return Promise.reject(error);
+        }
     }
-
 }
 
 export const noteLogout = () => {
