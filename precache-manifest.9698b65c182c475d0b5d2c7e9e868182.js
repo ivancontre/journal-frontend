@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6740b587130996eec7a2333931da64eb",
+    "revision": "115a492c3d54ce7ac6c64cd8c7828673",
     "url": "https://ivancontre.github.io/react-journalapp/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://ivancontre.github.io/react-journalapp/static/css/2.2ce0d9b2.chunk.css"
   },
   {
-    "revision": "674378c25d3179482ffc",
+    "revision": "a110721f18407636ce85",
     "url": "https://ivancontre.github.io/react-journalapp/static/css/main.9b54ea1f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://ivancontre.github.io/react-journalapp/static/js/2.cb64a2e5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "674378c25d3179482ffc",
-    "url": "https://ivancontre.github.io/react-journalapp/static/js/main.c96e24dd.chunk.js"
+    "revision": "a110721f18407636ce85",
+    "url": "https://ivancontre.github.io/react-journalapp/static/js/main.817420e9.chunk.js"
   },
   {
     "revision": "7b0b1128ab55a6fb4323",
