@@ -21,6 +21,7 @@ export const NotesAppBar = () => {
             await dispatch(startSaveNote(note));
             Swal.fire('Guardado', 'Nota actualizada correctamente', 'success');
         } catch (error) {
+            console.log(error)
             Swal.fire('Error', '', 'error');
         }   
         

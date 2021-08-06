@@ -123,7 +123,7 @@ export const startSaveNote = (note) => {
 
         try {
 
-            await db.doc(`${ uid }/journal/notes2/${ note.id }`).update(noteToFirestore);
+            await db.doc(`${ uid }/journal/notes/${ note.id }`).update(noteToFirestore);
             dispatch(updateNote(note.id, note));
             return Promise.resolve();
 
