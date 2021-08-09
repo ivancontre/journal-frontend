@@ -6,3 +6,6 @@ Enzyme.configure({ adapter: new Adapter() });
 expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
 
 //import '@testing-library/jest-dom';
+
+const noScroll = () => {}
+Object.defineProperty(window, 'scrollTo', {value: noScroll, writable: true})
