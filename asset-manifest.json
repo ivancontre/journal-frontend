@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "https://ivancontre.github.io/react-journalapp/static/css/main.9b54ea1f.chunk.css",
-    "main.js": "https://ivancontre.github.io/react-journalapp/static/js/main.817420e9.chunk.js",
-    "main.js.map": "https://ivancontre.github.io/react-journalapp/static/js/main.817420e9.chunk.js.map",
+    "main.js": "https://ivancontre.github.io/react-journalapp/static/js/main.11713846.chunk.js",
+    "main.js.map": "https://ivancontre.github.io/react-journalapp/static/js/main.11713846.chunk.js.map",
     "runtime-main.js": "https://ivancontre.github.io/react-journalapp/static/js/runtime-main.a5157b4e.js",
     "runtime-main.js.map": "https://ivancontre.github.io/react-journalapp/static/js/runtime-main.a5157b4e.js.map",
     "static/css/2.2ce0d9b2.chunk.css": "https://ivancontre.github.io/react-journalapp/static/css/2.2ce0d9b2.chunk.css",
-    "static/js/2.cb64a2e5.chunk.js": "https://ivancontre.github.io/react-journalapp/static/js/2.cb64a2e5.chunk.js",
-    "static/js/2.cb64a2e5.chunk.js.map": "https://ivancontre.github.io/react-journalapp/static/js/2.cb64a2e5.chunk.js.map",
+    "static/js/2.51e686b7.chunk.js": "https://ivancontre.github.io/react-journalapp/static/js/2.51e686b7.chunk.js",
+    "static/js/2.51e686b7.chunk.js.map": "https://ivancontre.github.io/react-journalapp/static/js/2.51e686b7.chunk.js.map",
     "index.html": "https://ivancontre.github.io/react-journalapp/index.html",
-    "precache-manifest.9698b65c182c475d0b5d2c7e9e868182.js": "https://ivancontre.github.io/react-journalapp/precache-manifest.9698b65c182c475d0b5d2c7e9e868182.js",
+    "precache-manifest.72c2d62a3517dc509c4005f63da80b29.js": "https://ivancontre.github.io/react-journalapp/precache-manifest.72c2d62a3517dc509c4005f63da80b29.js",
     "service-worker.js": "https://ivancontre.github.io/react-journalapp/service-worker.js",
     "static/css/2.2ce0d9b2.chunk.css.map": "https://ivancontre.github.io/react-journalapp/static/css/2.2ce0d9b2.chunk.css.map",
     "static/css/main.9b54ea1f.chunk.css.map": "https://ivancontre.github.io/react-journalapp/static/css/main.9b54ea1f.chunk.css.map",
-    "static/js/2.cb64a2e5.chunk.js.LICENSE.txt": "https://ivancontre.github.io/react-journalapp/static/js/2.cb64a2e5.chunk.js.LICENSE.txt"
+    "static/js/2.51e686b7.chunk.js.LICENSE.txt": "https://ivancontre.github.io/react-journalapp/static/js/2.51e686b7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a5157b4e.js",
     "static/css/2.2ce0d9b2.chunk.css",
-    "static/js/2.cb64a2e5.chunk.js",
+    "static/js/2.51e686b7.chunk.js",
     "static/css/main.9b54ea1f.chunk.css",
-    "static/js/main.817420e9.chunk.js"
+    "static/js/main.11713846.chunk.js"
   ]
 }
