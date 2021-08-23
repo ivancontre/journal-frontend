@@ -39,7 +39,7 @@ export const LoginScreen = () => {
             dispatch(setError('Email is not valid'));
             return false;
 
-        } else if (!password || password.lenght < 5) {
+        } else if (!password || password.length < 5) {
 
             dispatch(setError('Password should be at least 6 characteres and match each other'));
             return false;

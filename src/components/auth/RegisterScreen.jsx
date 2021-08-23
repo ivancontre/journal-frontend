@@ -43,7 +43,7 @@ export const RegisterScreen = () => {
             dispatch(setError('Email is not valid'));
             return false;
 
-        } else if (password1 !== password2 || password1.lenght < 5) {
+        } else if (password1 !== password2 || password1.length < 5) {
 
             dispatch(setError('Password should be at least 6 characteres and match each other'));
             return false;
